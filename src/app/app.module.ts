@@ -5,18 +5,22 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { ImageDetailComponent } from './image-detail/image-detail.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ImageService } from './image.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     GalleryComponent,
-    ImageDetailComponent
+    ImageDetailComponent,
+    
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ImageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
