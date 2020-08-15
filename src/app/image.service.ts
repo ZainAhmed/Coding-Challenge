@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { GalleryImage } from './image';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
@@ -8,12 +8,17 @@ import 'rxjs/add/observable/throw';
 @Injectable()
 export class ImageService {
 
-  private url: string = 'https://api.imgur.com/3/gallery/hot/viral/0.json';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+     
+  }
 
 
-  getImages():Observable<GalleryImage[]>{
-    return  this.http.get(this.url)
+  getImages(url:string):Observable<GalleryImage[]>{
+    let header = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Client-ID aa98dc1b3b319c4'
+    });
+    return  this.http.get(url,{headers: header})
     .catch(this.errorHandler);
   }
 

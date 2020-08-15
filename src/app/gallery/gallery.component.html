@@ -1,4 +1,27 @@
-<div class="gallery"> 
-  <img *ngFor = "let img of images" src="{{img.link}}" width="200" height="200">
-  <video controls width="200" height="200"><source src="https://i.imgur.com/73k98J4.mp4" ></video>
+
+<div>
+ <span class="section-title"> Section:</span>
+
 </div>
+  <mat-radio-group  (ngModelChange)="updateSection($event)" [ngModel]="selectedSection">
+    <mat-radio-button  class="sectionButtons" *ngFor="let section of sections" [value]="section">
+      {{section}}
+    </mat-radio-button>
+  </mat-radio-group>
+
+<div class="row" id="main-container"> 
+ <div *ngFor = "let img of images"  class= "column">
+   <h3>{{img.title}}</h3> 
+   <h6 style="word-wrap:break-word;">{{img.description}}</h6>
+    <span *ngIf = "img.type == 'video/mp4'">
+      <video controls id="video">
+        <source src="{{img.link}}" >
+      </video>
+    </span>
+    <span *ngIf = "img.type != 'video/mp4'">
+      <img  src="{{img.link}}" id="image">
+    </span>
+  </div>
+</div>
+
+  

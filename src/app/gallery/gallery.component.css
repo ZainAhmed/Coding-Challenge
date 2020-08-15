@@ -1,0 +1,64 @@
+::ng-deep .mat-radio-button .mat-radio-container,
+::ng-deep .mat-radio-label .mat-radio-container{
+    width: 0;
+  }
+ 
+::ng-deep .mat-radio-container .mat-radio-outer-circle,
+::ng-deep .mat-radio-container .mat-radio-inner-circle,
+::ng-deep #mat-radio-2-input,
+::ng-deep #mat-radio-3-input,
+::ng-deep #mat-radio-4-input {
+    display: none !important;
+  } 
+
+
+
+  ::ng-deep .mat-radio-label-content{
+      padding-left: 15px !important;
+      padding-right: 15px !important;
+          color: #FFC000;
+          margin-left:10px;
+          border-style: solid;
+          border-width: 1px;;
+          border-color:  #FFC000;
+          border-radius: 5px;
+      
+  }
+ 
+  ::ng-deep .mat-radio-checked .mat-radio-label .mat-radio-label-content{
+    background-color: #FFC000;
+    border-radius: 5px;
+    color:white !important;
+  }
+
+
+.section-title{
+    display: inline-block;
+}
+#main-container{
+    display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: 200px;
+  
+}
+
+.column{
+    width: 400px;
+    margin:30px;
+    padding-bottom: 80px;
+}
+
+#video{
+    width: 400px;
+    height: 400px;
+    
+}
+
+#image{
+    width: 400px;
+    height: 400px;
+    align-content: center;
+}
+
+
