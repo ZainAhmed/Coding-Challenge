@@ -8,11 +8,8 @@ import 'rxjs/add/observable/throw';
 @Injectable()
 export class ImageService {
 
-  constructor(private http: HttpClient) { 
-     
-  }
-
-
+  constructor(private http: HttpClient) { }
+c
   getImages(url:string):Observable<GalleryImage[]>{
     let header = new HttpHeaders({
       'Content-Type': 'application/json',

@@ -3,23 +3,20 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { GalleryComponent } from './gallery/gallery.component';
 import {MatRadioModule} from '@angular/material/radio';
-import { ImageDetailComponent } from './image-detail/image-detail.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ImageService } from './image.service';
+import { ImagedetailService } from './imagedetail.service';
 import {BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-
+import { AppRoutingModule, RoutingComponents} from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GalleryComponent,
-    ImageDetailComponent,
-    
+    RoutingComponents
   ],
   imports: [
     BrowserModule,
@@ -28,9 +25,12 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     BrowserAnimationsModule,
     FormsModule,
     MatSelectModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    AppRoutingModule
   ],
-  providers: [ImageService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [ImageService,
+              ImagedetailService],
 })
 export class AppModule { }
+

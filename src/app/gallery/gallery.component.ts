@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageService } from '../image.service';
 import { GalleryImage } from '../image';
-
+import { Router } from '@angular/router'; 
+import { ImagedetailService } from '../imagedetail.service';
 
 @Component({
   selector: 'app-gallery',
@@ -25,7 +26,7 @@ export class GalleryComponent implements OnInit {
   public url :string = "https://api.imgur.com/3/gallery";
 
 
-  constructor(private imageService: ImageService) { }
+  constructor(private imageService: ImageService, private router:Router,private imageDetailService: ImagedetailService) { }
 
   ngOnInit() {
     this.getImages(this.url+"/"+this.selectedSection+"/"+this.selectedSort+"/"+this.selectedWindow+"/0?showViral="+this.showViral.toString()+".json");
@@ -74,5 +75,11 @@ export class GalleryComponent implements OnInit {
   updateViral(value) {
     this.showViral = value;
     this.getImages(this.url+"/"+this.selectedSection+"/"+this.selectedSort+"/"+this.selectedWindow+"/0?showViral="+this.showViral.toString()+".json");
+  }
+
+  onSelect(img){
+    this.imageDetailService.image.next(img);
+    console.log("qwert",this.imageDetailService.image)
+    window.open('imageDetail/'+img.title);
   }
 }
