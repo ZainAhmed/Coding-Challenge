@@ -14,33 +14,58 @@
 
 
   ::ng-deep .mat-radio-label-content{
-      padding-left: 15px !important;
-      padding-right: 15px !important;
-          color: #FFC000;
-          margin-left:10px;
-          border-style: solid;
-          border-width: 1px;;
-          border-color:  #FFC000;
-          border-radius: 5px;
-      
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    color: #FFC000;
+    margin-left:10px;
+    border-style: solid;
+    border-width: 1px;;
+    border-color:  #FFC000;
+    border-radius: 5px;
   }
  
-  ::ng-deep .mat-radio-checked .mat-radio-label .mat-radio-label-content{
-    background-color: #FFC000;
-    border-radius: 5px;
-    color:white !important;
-  }
+::ng-deep .mat-radio-checked .mat-radio-label .mat-radio-label-content{
+  background-color: #FFC000;
+  border-radius: 5px;
+  color:white !important;
+}
 
+::ng-deep .mat-option .mat-active{
+  background: #FFC000 !important;
+  color:white !important;
+}
+
+::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled){
+  color:white !important;
+}
+::ng-deep .mat-select-panel .mat-option.mat-selected:not(.mat-option-multiple){
+  background: #FFC000 !important;
+}
+::ng-deep .mat-select-arrow,
+::ng-deep .mat-focused .mat-form-field-label
+ {
+  color:#FFC000 !important;
+}
+
+/* ::ng-deep  .mat-option */
+::ng-deep .mat-form-field-underline,
+::ng-deep  .mat-form-field-ripple{
+background-color:#FFC000 !important;
+}
 
 .section-title{
     display: inline-block;
 }
-#main-container{
-    display: flex;
+
+#main-image-container{
+  display: flex;
   justify-content: center;
   align-items: flex-end;
-  margin-top: 200px;
-  
+}
+
+#form-container{
+  display: flex;
+  justify-content: center;
 }
 
 .column{

@@ -10,7 +10,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ImageService } from './image.service';
 import {BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-
+import {MatSelectModule} from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -25,7 +26,9 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     MatRadioModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    MatSelectModule,
+    MatCheckboxModule
   ],
   providers: [ImageService],
   bootstrap: [AppComponent]

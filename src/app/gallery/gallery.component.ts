@@ -1,6 +1,7 @@
-import { Component, OnInit, ComponentFactoryResolver } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ImageService } from '../image.service';
 import { GalleryImage } from '../image';
+
 
 @Component({
   selector: 'app-gallery',
@@ -9,17 +10,25 @@ import { GalleryImage } from '../image';
 })
 
 export class GalleryComponent implements OnInit {
+  selectedSection:string='hot';
+  selectedWindow:string = 'day';
+  selectedSort:string="viral"
+
   sections: string[] = ['hot', 'top', 'user'];
   sorts: string[] = ['viral', 'top', 'time'];
-  windows: string[] = ['day', 'week', 'month','year'];
-  selectedSection:string='hot';
+  userSorts: string[] = ['viral', 'top', 'time', 'rising'];
+  windows: string[] = ['day', 'week', 'month','year','all'];
+  showViral=true;
+
   public images = [];
   public errorMsg;
   public url :string = "https://api.imgur.com/3/gallery";
+
+
   constructor(private imageService: ImageService) { }
 
   ngOnInit() {
-    this.getImages(this.url+"/"+this.selectedSection+"/viral/all/0?showViral=true.json");
+    this.getImages(this.url+"/"+this.selectedSection+"/"+this.selectedSort+"/"+this.selectedWindow+"/0?showViral="+this.showViral.toString()+".json");
   }
 
   getImages(url:string){
@@ -27,7 +36,6 @@ export class GalleryComponent implements OnInit {
     this.imageService.getImages(url).
    subscribe(response =>{
      let data = response["data"];
-     console.log(data);
      for(let value in data){
       let jsonData = data[value];
        if(jsonData["images"] != undefined){
@@ -50,6 +58,21 @@ export class GalleryComponent implements OnInit {
   }
   updateSection(value) {
     this.selectedSection = value;
-    this.getImages(this.url+"/"+this.selectedSection+"/viral/all/0?showViral=true.json");
+    this.getImages(this.url+"/"+this.selectedSection+"/"+this.selectedSort+"/"+this.selectedWindow+"/0?showViral="+this.showViral.toString()+".json");
+  }
+
+  updateWindow(value) {
+    this.selectedWindow = value;
+    this.getImages(this.url+"/"+this.selectedSection+"/"+this.selectedSort+"/"+this.selectedWindow+"/0?showViral="+this.showViral.toString()+".json");
+  }
+
+  updateSort(value) {
+    this.selectedSort = value;
+    this.getImages(this.url+"/"+this.selectedSection+"/"+this.selectedSort+"/"+this.selectedWindow+"/0?showViral="+this.showViral.toString()+".json");
+  }
+
+  updateViral(value) {
+    this.showViral = value;
+    this.getImages(this.url+"/"+this.selectedSection+"/"+this.selectedSort+"/"+this.selectedWindow+"/0?showViral="+this.showViral.toString()+".json");
   }
 }
