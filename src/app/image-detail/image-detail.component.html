@@ -1,3 +1,43 @@
-<p>
-  image-detail works!
-</p>
+<div class="row" id="container">
+  <div class="column" >
+    <h2>{{image.title}}</h2>
+  </div>
+</div>
+
+
+  
+<div class="row" id="container">
+  <div class="column" >
+    <h6 style="word-wrap:break-word;">{{image.description}}</h6>
+  </div>
+</div>
+
+<div class="row" id="container">
+  <div  class="column"  id="rating">
+    <mat-icon aria-hidden="false" class="icons">thumb_up</mat-icon>{{image.upvotes}}
+  </div>
+  <div  class="column"id="rating" >
+    <mat-icon aria-hidden="false" class="icons">thumb_down</mat-icon>{{image.upvotes}}{{image.downvotes}}
+  </div>
+  <div  class="column" id="rating">
+    score:{{image.score}}
+  </div>
+</div>
+
+<div class="row" id="container">
+  <div  class="column" >
+    <span *ngIf = "image.type == 'video/mp4'; else elseBlock">
+      <video controls id="video">
+        <source src="{{image.link}}" >
+      </video>
+    </span>
+    <ng-template #elseBlock>
+      <span>
+        <img  src="{{image.link}}" id="image">
+      </span>
+    </ng-template>
+  </div>
+</div>
+
+
+

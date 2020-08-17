@@ -78,8 +78,9 @@ export class GalleryComponent implements OnInit {
   }
 
   onSelect(img){
-    this.imageDetailService.image.next(img);
-    console.log("qwert",this.imageDetailService.image)
-    window.open('imageDetail/'+img.title);
+    
+    this.imageDetailService.getImageDetail(img);
+    this.router.navigate(['imageDetail',img.title])
+    
   }
 }

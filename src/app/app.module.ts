@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { AppRoutingModule, RoutingComponents} from './app-routing.module';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AppRoutingModule, RoutingComponents} from './app-routing.module';
     FormsModule,
     MatSelectModule,
     MatCheckboxModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatIconModule
   ],
   bootstrap: [AppComponent],
   providers: [ImageService,

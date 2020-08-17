@@ -1,66 +1,62 @@
 
-<div class="MainContainer">
-<div class="row" id="form-container">
-  <div class="column">
-    <div>
-    <span class="section-title"> Selected Section:</span>
+<div class="main-container">
+  <div class="row" id="form-container">
+    <div class="column">
+      <div class="center">
+        <span > Selected Section:</span>
+      </div>
+      <mat-radio-group  (ngModelChange)="updateSection($event)" [ngModel]="selectedSection">
+        <mat-radio-button  class="sectionButtons" *ngFor="let section of sections" [value]="section">
+          {{section}}
+        </mat-radio-button>
+      </mat-radio-group>
     </div>
 
-    <mat-radio-group  (ngModelChange)="updateSection($event)" [ngModel]="selectedSection">
-      <mat-radio-button  class="sectionButtons" *ngFor="let section of sections" [value]="section">
-        {{section}}
-      </mat-radio-button>
-    </mat-radio-group>
+    <div class="column">
+      <mat-form-field *ngIf = "selectedSection != 'user'" >
+        <mat-select    placeholder="Sorted by:"  (ngModelChange)="updateSort($event)" [ngModel]="selectedSort">
+          <mat-option *ngFor="let sort of sorts" [value]="sort">
+            {{sort}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      <mat-form-field *ngIf = "selectedSection == 'user'" >
+        <mat-select    placeholder="Sorted by:"  (ngModelChange)="updateSort($event)" [ngModel]="selectedSort">
+          <mat-option *ngFor="let sort of userSorts" [value]="sort">
+            {{sort}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="column" *ngIf = "selectedSection == 'top' || selectedSection == 'user'">
+      <mat-form-field *ngIf = "selectedSection == 'top'">
+        <mat-select placeholder="Selected Window:"  (ngModelChange)="updateWindow($event)" [ngModel]="selectedWindow">
+          <mat-option *ngFor="let window of windows" [value]="window">
+            {{window}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-checkbox *ngIf = "selectedSection == 'user'" (ngModelChange)="updateViral($event)" [(ngModel)]="showViral">Show Viral</mat-checkbox>
+    </div>
   </div>
 
-
-
-  <div class="column">
-    <mat-form-field *ngIf = "selectedSection != 'user'" >
-      <mat-select    placeholder="Sorted by:"  (ngModelChange)="updateSort($event)" [ngModel]="selectedSort">
-        <mat-option *ngFor="let sort of sorts" [value]="sort">
-          {{sort}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    
-    <mat-form-field *ngIf = "selectedSection == 'user'" >
-      <mat-select    placeholder="Sorted by:"  (ngModelChange)="updateSort($event)" [ngModel]="selectedSort">
-        <mat-option *ngFor="let sort of userSorts" [value]="sort">
-          {{sort}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+  <div class="row" id="main-image-container"> 
+    <div (click)="onSelect(img)" *ngFor = "let img of images"  class= "column">
+      <h3>{{img.title}}</h3> 
+      <h6 style="word-wrap:break-word;">{{img.description}}</h6>
+      <span *ngIf = "img.type == 'video/mp4'; else elseBlock">
+        <video controls id="video">
+          <source src="{{img.link}}" >
+        </video>
+      </span>
+      <ng-template #elseBlock>
+      <span>
+        <img  src="{{img.link}}" id="image">
+      </span>
+      </ng-template>
+    </div>
   </div>
-
-  <div class="column" *ngIf = "selectedSection == 'top' || selectedSection == 'user'">
-    
-    <mat-form-field *ngIf = "selectedSection == 'top'">
-      <mat-select placeholder="Selected Window:"  (ngModelChange)="updateWindow($event)" [ngModel]="selectedWindow">
-        <mat-option *ngFor="let window of windows" [value]="window">
-          {{window}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    
-    <mat-checkbox *ngIf = "selectedSection == 'user'" (ngModelChange)="updateViral($event)" [(ngModel)]="showViral">Show Viral</mat-checkbox>
-  </div>
-
-</div>
-
-<div class="row" id="main-image-container"> 
- <div (click)="onSelect(img)" *ngFor = "let img of images"  class= "column">
-   <h3>{{img.title}}</h3> 
-   <h6 style="word-wrap:break-word;">{{img.description}}</h6>
-    <span *ngIf = "img.type == 'video/mp4'">
-      <video controls id="video">
-        <source src="{{img.link}}" >
-      </video>
-    </span>
-    <span *ngIf = "img.type != 'video/mp4'">
-      <img  src="{{img.link}}" id="image">
-    </span>
-  </div>
-</div>
 </div>
   

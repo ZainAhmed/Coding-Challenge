@@ -1,10 +1,11 @@
-import { Injectable,EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { GalleryImage } from './image';
-import { Subject, BehaviorSubject, Subscription } from 'rxjs';
-
-@Injectable()
+import {BehaviorSubject} from 'rxjs';
+@Injectable({
+  providedIn: 'root'
+})
 export class ImagedetailService {
-  image = new BehaviorSubject<GalleryImage>({
+  private imageSource = new BehaviorSubject<GalleryImage>({
     description:"",
     title:"",
     downvotes:0,
@@ -13,11 +14,11 @@ export class ImagedetailService {
     type:"",
     upvotes:0
   })
-  subcription = new Subscription();
-  constructor() { 
-    // this.subcription.add(
-    //   this.image.subscribe(res => {console.log("image changed: ", res)})
-    // )
-    console.log("service initialized ")
+  currentImage = this.imageSource.asObservable();
+  
+  constructor() {  }
+
+  getImageDetail(img:GalleryImage ){
+    this.imageSource.next(img);
   }
 }
